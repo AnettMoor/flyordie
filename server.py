@@ -9,7 +9,7 @@ led_edasi = machine.Pin(19, machine.Pin.OUT)
 # --------------------------------------------
 
 ssid = "Galaxy S20 FE"
-password = "tere12344"
+password = "flyordie"
 
 # --- WiFi seadistus ---
 wlan = network.WLAN(network.STA_IF)
