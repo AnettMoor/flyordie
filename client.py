@@ -12,7 +12,7 @@ nupp_vasakule = machine.Pin(13, machine.Pin.IN, machine.Pin.PULL_DOWN)
 led_vasakule = machine.Pin(15, machine.Pin.OUT)
 
 nupp_paremale = machine.Pin(14, machine.Pin.IN, machine.Pin.PULL_DOWN)
-led_paremale = machine.Pin(19, machine.Pin.OUT)
+led_paremale = machine.Pin(18, machine.Pin.OUT)
 
 
 
