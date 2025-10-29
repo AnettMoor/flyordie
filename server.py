@@ -53,20 +53,20 @@ while True:
             print("Sain:", msg)
 
             # --- LED reaktsioon käsule ---
-            if msg == "BTN_EDASI":
+            if msg == "BTN_EDASI_ON":
                 # MOOTOR    
                 motor1.duty_u16(40000) # mootori kiirus/tööle mootor
                 time.sleep(2)        # mitu sek töötab mootor
                 motor1.duty_u16(0)    # mootor kinni
-            elif msg == "BTN_TAGASI":
+            elif msg == "BTN_TAGASI_ON":
                 motor2.duty_u16(40000)
                 time.sleep(2)  
                 motor2.duty_u16(0)
-            elif msg == "BTN_VASAKULE":
+            elif msg == "BTN_VASAKULE_ON":
                 motor2.duty_u16(40000)
                 time.sleep(2)  
                 motor2.duty_u16(0) 
-            elif msg == "BTN_PAREMALE":
+            elif msg == "BTN_PAREMALE_ON":
                 motor4.duty_u16(40000)
                 time.sleep(2)  
                 motor4.duty_u16(0) 
