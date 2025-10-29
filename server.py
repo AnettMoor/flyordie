@@ -1,17 +1,27 @@
 import network
 import socket
 import time
-import machine
+from machine import Pin, PWM
 
-# --- LEDid serveril (GP1 ja GP16 näiteks) ---
-led_tagasi = machine.Pin(15, machine.Pin.OUT)
-led_edasi = machine.Pin(19, machine.Pin.OUT)
+# --- mootorid ---
+motor1 = PWM(Pin(26))
+motor1.freq(10000)
+
+motor2 = PWM(Pin(28))
+motor2.freq(10000)
+
+motor3 = PWM(Pin(27))  # ei tööta hetkel, vasak
+motor3.freq(10000)
+
+motor4 = PWM(Pin(21)) # ei tööta hetkel, vasak
+motor4.freq(10000)
 # --------------------------------------------
 
+
+# --- WiFi seadistus ---
 ssid = "Galaxy S20 FE"
 password = "flyordie"
 
-# --- WiFi seadistus ---
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 wlan.connect(ssid, password)
@@ -43,16 +53,24 @@ while True:
             print("Sain:", msg)
 
             # --- LED reaktsioon käsule ---
-            if msg == "BTN_EDASI_ON":
-                led_edasi.value(1)
-            elif msg == "BTN_EDASI_OFF":
-                led_edasi.value(0)
-            elif msg == "BTN_TAGASI_ON":
-                led_tagasi.value(1)
-            elif msg == "BTN_TAGASI_OFF":
-                led_tagasi.value(0)
+            if msg == "BTN_EDASI":
+                # MOOTOR    
+                motor1.duty_u16(40000) # mootori kiirus/tööle mootor
+                time.sleep(2)        # mitu sek töötab mootor
+                motor1.duty_u16(0)    # mootor kinni
+            elif msg == "BTN_TAGASI":
+                motor2.duty_u16(40000)
+                time.sleep(2)  
+                motor2.duty_u16(0)
+            elif msg == "BTN_VASAKULE":
+                motor2.duty_u16(40000)
+                time.sleep(2)  
+                motor2.duty_u16(0) 
+            elif msg == "BTN_PAREMALE":
+                motor4.duty_u16(40000)
+                time.sleep(2)  
+                motor4.duty_u16(0) 
             # ------------------------------
-
             conn.send(b"OK\n")
     except:
         pass
