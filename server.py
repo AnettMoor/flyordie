@@ -7,26 +7,15 @@ from machine import Pin, PWM
 motor1 = PWM(Pin(28))
 motor1.freq(10000) # voib ka proovida 20000 (võib olla smoother control?)
 
-motor2 = PWM(Pin(27))
+motor2 = PWM(Pin(26))
 motor2.freq(10000)
 
-motor3 = PWM(Pin(26))
-motor3.freq(10000)
+motor3 = PWM(Pin(18))
+moto3.freq(10000)
 
-motor4 = PWM(Pin(21)) #KATKINE
+
+motor4 = PWM(Pin(16))
 motor4.freq(10000)
-
-motor5 = PWM(Pin(18))
-motor5.freq(10000)
-
-motor6 = PWM(Pin(14))
-motor6.freq(10000)
-
-motor7 = PWM(Pin(17))
-motor7.freq(10000)
-
-motor8 = PWM(Pin(16))
-motor8.freq(10000)
 # --------------------------------------------
 
 
@@ -72,36 +61,20 @@ while True:
                 time.sleep(2)        # mitu sek töötab mootor
                 motor1.duty_u16(0)    # mootor kinni
 
-                motor5.duty_u16(40000)
-                time.sleep(2)  
-                motor5.duty_u16(0)
-                
             elif msg == "BTN_TAGASI_ON":
                 motor2.duty_u16(40000)
                 time.sleep(2)  
                 motor2.duty_u16(0)
-
-                motor6.duty_u16(40000)
-                time.sleep(2)  
-                motor6.duty_u16(0)
                 
             elif msg == "BTN_VASAKULE_ON":
-                motor2.duty_u16(40000)
+                motor3.duty_u16(40000)
                 time.sleep(2)  
-                motor2.duty_u16(0) 
-
-                motor7.duty_u16(40000)
-                time.sleep(2)  
-                motor7.duty_u16(0)
+                motor3.duty_u16(0) 
                 
             elif msg == "BTN_PAREMALE_ON":
                 motor4.duty_u16(40000)
                 time.sleep(2)  
                 motor4.duty_u16(0) 
-
-                motor8.duty_u16(40000)
-                time.sleep(2)  
-                motor8.duty_u16(0)
             # ------------------------------
             conn.send(b"OK\n")
     except:
